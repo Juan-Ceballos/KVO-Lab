@@ -8,9 +8,9 @@
 
 import Foundation
 
-class User: NSObject {
+@objc class User: NSObject {
     let name: String
-    let balance: Double
+    @objc dynamic var balance: Double
     
     init(name: String, balance: Double)  {
         self.name = name
