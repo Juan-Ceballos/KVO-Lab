@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E3090C824425B970061F971 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3090C724425B970061F971 /* Bank.swift */; };
+		3E3090CA2443F0790061F971 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3090C92443F0790061F971 /* Account.swift */; };
 		3E97BA03243D123D0006C2BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97BA02243D123D0006C2BF /* AppDelegate.swift */; };
 		3E97BA05243D123D0006C2BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97BA04243D123D0006C2BF /* SceneDelegate.swift */; };
 		3E97BA0A243D123D0006C2BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E97BA08243D123D0006C2BF /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		3E3090C724425B970061F971 /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		3E3090C92443F0790061F971 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3E97B9FF243D123D0006C2BF /* KVO-Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KVO-Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E97BA02243D123D0006C2BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		3E97BA04243D123D0006C2BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				3E3090C724425B970061F971 /* Bank.swift */,
 				3E97BA46243EB0D90006C2BF /* User.swift */,
+				3E3090C92443F0790061F971 /* Account.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				3E97BA03243D123D0006C2BF /* AppDelegate.swift in Sources */,
 				3E97BA4B243EB6930006C2BF /* AccountChangeViewController.swift in Sources */,
 				3E97BA49243EB6780006C2BF /* UsersViewController.swift in Sources */,
+				3E3090CA2443F0790061F971 /* Account.swift in Sources */,
 				3E97BA05243D123D0006C2BF /* SceneDelegate.swift in Sources */,
 				3E97BA45243EB0C00006C2BF /* CreateUserViewController.swift in Sources */,
 				3E97BA4D243EB6B40006C2BF /* AccountActionViewController.swift in Sources */,

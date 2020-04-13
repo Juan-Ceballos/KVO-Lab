@@ -10,7 +10,7 @@ import UIKit
 
 class AccountActionViewController: UIViewController {
     
-    var user: User?
+    var account: Account?
     
     @IBOutlet weak var amountTextField: UITextField!
     
@@ -20,7 +20,7 @@ class AccountActionViewController: UIViewController {
     }
    
     @IBAction func withdrawButtonPressed(_ sender: UIButton) {
-        guard let selectedUser = user   else    {
+        guard let selectedUser = account   else    {
             fatalError()
         }
         
@@ -30,6 +30,7 @@ class AccountActionViewController: UIViewController {
             else   {
                 return
             }
+    
         selectedUser.balance -= amountToWithdraw
         print(selectedUser.balance)
     }

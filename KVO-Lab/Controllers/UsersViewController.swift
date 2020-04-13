@@ -14,18 +14,15 @@ class UsersViewController: UIViewController {
     
     var bankObservation: NSKeyValueObservation?
     private var userBalanceObservation: NSKeyValueObservation?
-    var user: User?
+    
+    var account: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         usersTableView.dataSource = self
         usersTableView.delegate = self
-        //configureBankObservation()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        usersTableView.reloadData()
+        configureBankObservation()
+        configureUserBalanceObservation()
     }
     
     private func configureBankObservation() {
@@ -35,11 +32,12 @@ class UsersViewController: UIViewController {
     }
     
     private func configureUserBalanceObservation()  {
-        userBalanceObservation = user?.observe(\.balance, options: [.old, .new], changeHandler: { (user, change) in
-            self.usersTableView.reloadData()
+        userBalanceObservation = account?.observe(\.balance, options: [.old, .new], changeHandler: { (user, change) in
+             self.usersTableView.reloadData()
+                       print("word")
         })
     }
-
+    
 }
 
 extension UsersViewController: UITableViewDataSource   {
@@ -49,11 +47,12 @@ extension UsersViewController: UITableViewDataSource   {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-        user = Bank.shared.users[indexPath.row]
-        cell.textLabel?.text = user?.name
-        cell.detailTextLabel?.text = user?.balance.description
-        return  cell
+        let ccaccount = Bank.shared.users[indexPath.row].account
+        cell.textLabel?.text = ccaccount.name
+        cell.detailTextLabel?.text = ccaccount.balance.description
+        return cell
     }
+    
 }
 
 extension UsersViewController: UITableViewDelegate  {

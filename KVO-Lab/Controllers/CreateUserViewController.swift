@@ -12,7 +12,7 @@ class CreateUserViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var startingBalanceTextField: UITextField!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameTextField.delegate = self
@@ -25,9 +25,10 @@ class CreateUserViewController: UIViewController {
             let newBalance = startingBalanceTextField.text,
             let balance = Double(newBalance)
                 {
-                    let newUser = User(name: newUserName, balance: balance)
+                    let newAccount = Account(name: newUserName, balance: balance)
+                    let newUser = User(account: newAccount)
                     Bank.shared.users.append(newUser)
-                    print(Bank.shared.users)
+                    print("New User")
         }
     }
     
