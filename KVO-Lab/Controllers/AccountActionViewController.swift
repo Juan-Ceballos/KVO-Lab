@@ -20,7 +20,7 @@ class AccountActionViewController: UIViewController {
     }
    
     @IBAction func withdrawButtonPressed(_ sender: UIButton) {
-        guard let selectedUser = account   else    {
+        guard let selectedAccount = account   else    {
             fatalError()
         }
         
@@ -30,15 +30,29 @@ class AccountActionViewController: UIViewController {
             else   {
                 return
             }
-    
-        selectedUser.balance -= amountToWithdraw
-        print(selectedUser.balance)
+        
+        selectedAccount.balance -= amountToWithdraw
+        print(selectedAccount.balance)
     }
     
     
     @IBAction func depositButtonPressed(_ sender: UIButton) {
+        guard let selectedAccount = account   else    {
+                fatalError()
+            }
+            
+            guard let amountToWithdrawText = amountTextField.text,
+                !amountToWithdrawText.isEmpty,
+            let amountToWithdraw = Double(amountToWithdrawText)
+                else   {
+                    return
+                }
+            
+            selectedAccount.balance -= amountToWithdraw
+            print(selectedAccount.balance)
     }
 }
+
 
 extension AccountActionViewController: UITextFieldDelegate  {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

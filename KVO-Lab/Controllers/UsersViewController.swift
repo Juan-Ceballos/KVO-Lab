@@ -13,28 +13,17 @@ class UsersViewController: UIViewController {
     @IBOutlet weak var usersTableView: UITableView!
     
     var bankObservation: NSKeyValueObservation?
-    private var userBalanceObservation: NSKeyValueObservation?
-    
     var account: Account?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         usersTableView.dataSource = self
-        usersTableView.delegate = self
         configureBankObservation()
-        configureUserBalanceObservation()
     }
     
     private func configureBankObservation() {
         bankObservation = Bank.shared.observe(\.users, options: [.old, .new], changeHandler: { (bank, change) in
             self.usersTableView.reloadData()
-        })
-    }
-    
-    private func configureUserBalanceObservation()  {
-        userBalanceObservation = account?.observe(\.balance, options: [.old, .new], changeHandler: { (user, change) in
-             self.usersTableView.reloadData()
-                       print("word")
         })
     }
     
@@ -54,8 +43,3 @@ extension UsersViewController: UITableViewDataSource   {
     }
     
 }
-
-extension UsersViewController: UITableViewDelegate  {
-    
-}
-

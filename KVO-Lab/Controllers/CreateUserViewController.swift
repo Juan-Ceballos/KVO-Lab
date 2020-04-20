@@ -19,12 +19,10 @@ class CreateUserViewController: UIViewController {
         startingBalanceTextField.delegate = self
     }
 
-    
     @IBAction func createButtonPressed(_ sender: UIButton) {
         if let newUserName = userNameTextField.text,
             let newBalance = startingBalanceTextField.text,
-            let balance = Double(newBalance)
-                {
+            let balance = Double(newBalance)    {
                     let newAccount = Account(name: newUserName, balance: balance)
                     let newUser = User(account: newAccount)
                     Bank.shared.users.append(newUser)
@@ -33,6 +31,7 @@ class CreateUserViewController: UIViewController {
     }
     
 }
+
 
 extension CreateUserViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -14,57 +14,51 @@ class AccountChangeViewController: UIViewController {
     
     private var account: Account?
     private var bankObservation: NSKeyValueObservation?
-    
     private var userBalanceObservation: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         accountsTableView.dataSource = self
-        accountsTableView.delegate = self
         configureBankObservation()
-        configureUserBalanceObservation()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          guard let accountActionVC = segue.destination as? AccountActionViewController, let indexPath = accountsTableView.indexPathForSelectedRow else {
              fatalError("could not segue")
            }
+        
         account = Bank.shared.users[indexPath.row].account
+        let user = User(account: account ?? Account(name: "", balance: 0.0))
+        
+        userBalanceObservation = account?.observe(\.balance, options: [.old, .new], changeHandler: { (account, change) in
+            self.accountsTableView.reloadData()
+            Bank.shared.users[indexPath.row] = user
+        })
+        
         accountActionVC.account = account
-        print(account?.balance ?? 33)
     }
     
     private func configureBankObservation() {
         bankObservation = Bank.shared.observe(\.users, options: [.old, .new], changeHandler: { (bank, change) in
             self.accountsTableView.reloadData()
-        })
-    }
-    
-    private func configureUserBalanceObservation()  {
-        userBalanceObservation = account?.observe(\.balance, options: [.old, .new], changeHandler: { (user, change) in
-             self.accountsTableView.reloadData()
-                       print("word")
+            print("balance test")
         })
     }
     
 }
 
 extension AccountChangeViewController: UITableViewDataSource    {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Bank.shared.users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath)
-        let ccaccount = Bank.shared.users[indexPath.row].account
-        cell.textLabel?.text = ccaccount.name
-        cell.detailTextLabel?.text = ccaccount.balance.description
-        return  cell
+        let cAccount = Bank.shared.users[indexPath.row].account
+        cell.textLabel?.text = cAccount.name
+        cell.detailTextLabel?.text = cAccount.balance.description
+        return cell
     }
-}
-
-extension AccountChangeViewController: UITableViewDelegate  {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //account = Bank.shared.users[indexPath.row].account
-    }
+    
 }
